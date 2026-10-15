@@ -70,7 +70,7 @@ def main():
                 print("Надо ввести число!")
                 continue
             if value <=0:
-                print("Сумма должна біть больше ноля")
+                print("Сумма должна бути більше нуля")
                 continue
 
             general_list.append({"Расходи": key, "Сумма": value})
@@ -83,7 +83,7 @@ def main():
 
 
         elif user_input == 3:
-            print(f"Ощая сумма расходов составила {calculate_total_price(general_list)} гривен")
+            print(f"Ощая сумма расходов составила {calculate_total_price(general_list)} грн. ")
 
         elif user_input == 4:
             filtered_list = []
