@@ -26,6 +26,10 @@ def save_expenses (exppense_list):
     with open('expenses.json', 'w', encoding="utf-8") as file:
         json.dump(exppense_list,file, ensure_ascii=False, indent=4)
 
+def normalize_category(text):
+    text = text.strip().lower()
+    return text
+
 def delete_expenses (expense_list):
     list_output(expense_list)
     try:
@@ -47,10 +51,10 @@ def total_by_category(expense_list):
     if len(expense_list)>0:
         for x in expense_list:
             product = x['Расходи']
-            product_dictionary[product] = 0
+            product_dictionary[normalize_category(product)] = 0
 
         for y in expense_list:
-            items = y['Расходи']
+            items = normalize_category(y['Расходи'])
             summa_items = y["Сумма"]
             if items in product_dictionary:
                 product_dictionary[items] += summa_items
