@@ -111,8 +111,8 @@ def main():
             filtered_list = []
             check = 0
             for x in general_list:
-                if x["Расходи"] not in filtered_list:
-                    filtered_list.append(x["Расходи"])
+                if normalize_category(x["Расходи"]) not in filtered_list:
+                    filtered_list.append(normalize_category(x["Расходи"]))
             for x in filtered_list:
                 print(f"{filtered_list.index(x)+1} - {x}")
             if not filtered_list:
@@ -128,7 +128,7 @@ def main():
                         user_categori = filtered_list[user_categori - 1]
                         print(user_categori)
                     for x in general_list:
-                        if user_categori == x['Расходи']:
+                        if user_categori == normalize_category(x['Расходи']):
                             check += x['Сумма']
                     print(f"Сумма потраченая на {user_categori} = {check} гривен")
                 except ValueError:
