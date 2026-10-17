@@ -120,4 +120,5 @@ def main():
         else:
             print("такого пункта НЕТУ !")
 
-main()
+if __name__ == "__main__":
+    main()
