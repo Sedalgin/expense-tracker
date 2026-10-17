@@ -1,6 +1,8 @@
 from calculations import normalize_category
 from calculations import calculate_total_price
 from calculations import total_by_category
+from storage import save_expenses
+from storage import load_expenses
 
 result = normalize_category(" ПРОДУКТИ    ")
 result_ = normalize_category(" ")
@@ -21,3 +23,11 @@ result_02_ = total_by_category([])
 assert result_02 == {"продукти":500}
 assert result_02_ == {}
 print("Третя перевірка пройдена")
+
+
+test_list = [{  "Расходи": "Холодильник", "Сумма": 11000},{  "Расходи": "Телефон", "Сумма": 7000}]
+save_expenses(test_list, "test_expenses.json")
+load = load_expenses("test_expenses.json")
+
+assert load == test_list
+print("Четверта перевірка пройдена")
