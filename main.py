@@ -1,7 +1,8 @@
-import json
 from calculations import calculate_total_price
 from calculations import normalize_category
 from calculations import total_by_category
+from storage import load_expenses
+from storage import save_expenses
 
 def flow_rate_output (general):
     for x in general:
@@ -10,18 +11,6 @@ def flow_rate_output (general):
 def list_output(expense_list):
     for y,item in enumerate(expense_list):
         print(f"{y+1} - {item['Расходи']} - {item['Сумма']} грн")
-
-def load_expenses():
-    try:
-        with open("expenses.json", "r",encoding='utf-8') as file:
-            return json.load(file)
-    except FileNotFoundError:
-        return []
-
-def save_expenses (exppense_list):
-    with open('expenses.json', 'w', encoding="utf-8") as file:
-        json.dump(exppense_list,file, ensure_ascii=False, indent=4)
-
 
 def delete_expenses (expense_list):
     list_output(expense_list)
@@ -38,7 +27,6 @@ def delete_expenses (expense_list):
         print("Список ПУСТ")
     except ValueError:
         print("Нужно ввести ЧИСЛО")
-
 
 def main():
     flag = True
