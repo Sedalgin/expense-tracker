@@ -1,4 +1,4 @@
 expenses.json
 .venv/
 .idea/
-__pyache__/
+__pycache__/
