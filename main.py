@@ -1,5 +1,7 @@
 import json
-
+from calculations import calculate_total_price
+from calculations import normalize_category
+from calculations import total_by_category
 
 def flow_rate_output (general):
     for x in general:
@@ -8,12 +10,6 @@ def flow_rate_output (general):
 def list_output(expense_list):
     for y,item in enumerate(expense_list):
         print(f"{y+1} - {item['Расходи']} - {item['Сумма']} грн")
-
-def calculate_total_price(general):
-    total_price = 0
-    for x in general:
-        total_price+=x["Сумма"]
-    return total_price
 
 def load_expenses():
     try:
@@ -26,9 +22,6 @@ def save_expenses (exppense_list):
     with open('expenses.json', 'w', encoding="utf-8") as file:
         json.dump(exppense_list,file, ensure_ascii=False, indent=4)
 
-def normalize_category(text):
-    text = text.strip().lower()
-    return text
 
 def delete_expenses (expense_list):
     list_output(expense_list)
@@ -46,22 +39,6 @@ def delete_expenses (expense_list):
     except ValueError:
         print("Нужно ввести ЧИСЛО")
 
-def total_by_category(expense_list):
-    product_dictionary = {}
-    if len(expense_list)>0:
-        for x in expense_list:
-            product = x['Расходи']
-            product_dictionary[normalize_category(product)] = 0
-
-        for y in expense_list:
-            items = normalize_category(y['Расходи'])
-            summa_items = y["Сумма"]
-            if items in product_dictionary:
-                product_dictionary[items] += summa_items
-
-        return product_dictionary
-    else:
-        return {}
 
 def main():
     flag = True
