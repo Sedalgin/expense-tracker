@@ -1,3 +1,4 @@
+import json
 from calculations import calculate_total_price
 from calculations import normalize_category
 from calculations import total_by_category
@@ -30,7 +31,12 @@ def delete_expenses (expense_list):
 
 def main():
     flag = True
-    general_list = load_expenses()
+    try:
+        general_list = load_expenses()
+    except json.JSONDecodeError:
+        print("Обнаружено что файл проврежден ! ")
+        return
+
     while flag:
 
         print("Добавить расход — 1")
