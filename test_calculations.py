@@ -5,10 +5,37 @@ from calculations import calculate_total_price
 from calculations import total_by_category
 from storage import load_expenses
 from storage import save_expenses
+from calculations import filter_by_min_amount
 
-def test_normalize_category():
-    result = normalize_category(" ПРОДУКТИ ")
-    assert result == "продукти"
+
+@pytest.mark.parametrize(
+    "text,expected",
+    [
+        ("ЕДА", "еда"),
+        (" еда ", "еда"),
+        ("ЕдА", "еда"),
+        ("",""),
+        (" ","")
+    ]
+)
+
+def test_normalize_category(text, expected):
+    assert normalize_category(text) == expected
+
+
+@pytest.mark.parametrize(
+    "expense_list, min_amount, expected",
+    [
+        ([{"Расходи":"Продукти", "Сумма":200}],2,[{"Расходи":"Продукти", "Сумма":200}]),
+        ([],200,[]),
+        ([{"Расходи":"Продукти", "Сумма":200}],400,[]),
+        ([{"Расходи":"Продукти", "Сумма":200},{"Расходи": "Продукти", "Сумма":200},{"Расходи":"Машина","Сумма":400}],
+         200,[{"Расходи":"Продукти", "Сумма":200},{"Расходи": "Продукти", "Сумма":200},{"Расходи":"Машина","Сумма":400}])
+    ]
+)
+
+def test_filter_by_min_amount(expense_list, min_amount, expected):
+    assert filter_by_min_amount(expense_list, min_amount) == expected
 
 def test_calculate_total_price():
     result = calculate_total_price([{"Расходи": "Продукти", "Сумма": 300}, {"Расходи": "Продукти", "Сумма": 300, }])

@@ -24,3 +24,11 @@ def total_by_category(expense_list):
         return product_dictionary
     else:
         return {}
+
+
+def filter_by_min_amount(expense_list, min_amount):
+    filter_list = []
+    for x in expense_list:
+        if x["Сумма"] >= min_amount:
+            filter_list.append(x)
+    return filter_list
