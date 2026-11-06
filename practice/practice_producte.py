@@ -13,7 +13,6 @@ test = Product("test",10)
 test_1 = Product("test",20)
 test_2 = Product("test2",50)
 expend = [test,test_1,test_2]
-print(expend)
 
 def calculate_product_total(products):
         calculate = 0
@@ -25,4 +24,13 @@ def calculate_product_total(products):
             print(0)
         return calculate
 
-print(calculate_product_total(expend))
+def calculate_total_up_to(products,max_price):
+    calculate = 0
+    if len(products)>0:
+        for x in products:
+            if x.price <= max_price:
+                calculate += x.price
+    else:
+        return 0
+    return calculate
+
