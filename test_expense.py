@@ -1,0 +1,40 @@
+import pytest
+from practice_oop import Expense
+
+
+def test_expense_creation():
+    test_1 = Expense("test",100)
+    assert test_1.amount == 100
+    assert test_1.category == "test"
+
+def test_change_amount():
+    test_1 = Expense("test",100)
+    test_1.change_amount(250)
+    assert test_1.amount == 250
+
+@pytest.mark.parametrize("new_amount",[-20,0])
+
+def test_change_new_amount(new_amount):
+    test_1 = Expense("test",100)
+    with pytest.raises(ValueError):
+        test_1.change_amount(new_amount)
+    assert test_1.amount == 100
+
+@pytest.mark.parametrize("new_amount",[-20,0])
+
+def test_1_expense_creation(new_amount):
+    with pytest.raises(ValueError):
+        test_1 = Expense("test", new_amount)
+
+@pytest.mark.parametrize("amount, expected",
+                         [
+                             (200,False),
+                             (150,False),
+                             (100,True),
+                             (50,True),
+                         ])
+
+def test_is_large(amount, expected):
+    test_1 = Expense("test", 100)
+    a = test_1.is_large(amount)
+    assert a == expected
