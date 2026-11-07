@@ -19,9 +19,13 @@ class Expense:
         else:
             self.amount = new_amount
 
+    def to_dict(self):
+        slovar = {}
+        slovar["Расходи"] = self.category
+        slovar["Сумма"] = self.amount
+        return slovar
 
 first_expense = Expense("Eда", 300)
-
 second_expense = Expense("Такси", 100)
 
 if __name__ == "__main__":
@@ -29,3 +33,5 @@ if __name__ == "__main__":
     print(second_expense.get_expense_1())
     print(first_expense.is_large(100))
     print(second_expense.is_large(150))
+    data = first_expense.to_dict()
+    print(data)

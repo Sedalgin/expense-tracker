@@ -1,7 +1,6 @@
 import pytest
 from practice_oop import Expense
 
-
 def test_expense_creation():
     test_1 = Expense("test",100)
     assert test_1.amount == 100
@@ -38,3 +37,18 @@ def test_is_large(amount, expected):
     test_1 = Expense("test", 100)
     a = test_1.is_large(amount)
     assert a == expected
+
+@pytest.mark.parametrize("expense, expected",
+                         [
+                            (Expense("Такси",150),{"Расходи":"Такси","Сумма":150}),
+                         ])
+
+def test_to_dict(expense, expected):
+    x = expense.to_dict()
+    assert x == expected
+
+def test_to_dict_change_amount ():
+    test = Expense("Такси",150)
+    test.change_amount(100)
+    x = test.to_dict()
+    assert x["Сумма"] == 100
