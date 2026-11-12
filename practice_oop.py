@@ -8,10 +8,7 @@ class Expense:
         return f"{self.category} = {self.amount} грн"
 
     def is_large(self,min_amount):
-        if self.amount >= min_amount:
-            return True
-        else:
-            return False
+        return True if self.amount >= min_amount else False
 
     def change_amount(self,new_amount):
         if new_amount <= 0:
@@ -25,7 +22,7 @@ class Expense:
         slovar["Сумма"] = self.amount
         return slovar
 
-first_expense = Expense("Eда", 300)
+first_expense = Expense("Eда", 200)
 second_expense = Expense("Такси", 100)
 
 if __name__ == "__main__":

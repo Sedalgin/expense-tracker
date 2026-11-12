@@ -1,9 +1,9 @@
 import json
 from calculations import calculate_total_price
-from calculations import normalize_category
 from calculations import total_by_category
 from storage import load_expenses
 from storage import save_expenses
+from practice_oop import Expense
 
 def flow_rate_output (general):
     for x in general:
@@ -53,20 +53,21 @@ def main():
             continue
 
         if user_input == 1:
+
             key = input("Название расходов: ")
             try:
                 value = int(input("Потраченая сумма: "))
             except ValueError:
-                print("Надо ввести число!")
-                continue
-            if value <=0:
-                print("Сумма должна бути більше нуля")
-                continue
-
-            general_list.append({"Расходи": key, "Сумма": value})
-            save_expenses(general_list)
-            print(general_list)
-
+                print("Надо ввести число")
+            else:
+                try:
+                    cost_object = Expense(key, value)
+                except ValueError as e:
+                    print(e)
+                else:
+                    general_list.append(cost_object.to_dict())
+                    save_expenses(general_list)
+                    print(general_list)
 
         elif user_input == 2:
             flow_rate_output(general_list)
@@ -79,29 +80,24 @@ def main():
             print(f"Ощая сумма расходов составила {calculate_total_price(general_list)} грн. ")
 
         elif user_input == 4:
-            filtered_list = []
-            check = 0
-            for x in general_list:
-                if normalize_category(x["Расходи"]) not in filtered_list:
-                    filtered_list.append(normalize_category(x["Расходи"]))
-            for x in filtered_list:
-                print(f"{filtered_list.index(x)+1} - {x}")
-            if not filtered_list:
+            all_squandered =[]
+            total_dict = total_by_category(general_list)
+            for y,x in enumerate(total_dict,start=1):
+                all_squandered.append(x)
+                print(f"{y} - {x}")
+
+            if not all_squandered:
                 print("Расходов пока нет")
                 continue
             else:
                 try:
-                    user_categori = int(input("Виберите категорию из введених Вами продуктов"))
-                    if not 1 <= user_categori <= len(filtered_list):
+                    user_category = int(input("Виберите категорию из введених Вами продуктов: "))
+                    if not 1 <= user_category <= len(all_squandered):
                         print("Ввели не верний номер")
                         continue
                     else:
-                        user_categori = filtered_list[user_categori - 1]
-                        print(user_categori)
-                    for x in general_list:
-                        if user_categori == normalize_category(x['Расходи']):
-                            check += x['Сумма']
-                    print(f"Сумма потраченая на {user_categori} = {check} гривен")
+                        user_category = all_squandered[user_category - 1]
+                        print(f"Сумма потраченая на {user_category} = {total_dict[user_category]} гривен")
                 except ValueError:
                     print("Надо ввести цифру для вибора")
 
