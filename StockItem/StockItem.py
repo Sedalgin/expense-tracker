@@ -19,6 +19,6 @@ class StockItem:
             return self.quantity
 
 if __name__ == "__main__":
-    x = StockItem("Stock Item", 1)
+    x = StockItem("Stock Item", 5)
     x.sell(4)
     x.text()

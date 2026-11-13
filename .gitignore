@@ -2,3 +2,6 @@ expenses.json
 .venv/
 .idea/
 __pycache__/
+CLAUDE.md
+.claude/
+test_expenses.json
