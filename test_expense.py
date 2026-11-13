@@ -1,5 +1,5 @@
 import pytest
-from practice_oop import Expense
+from expense import Expense
 
 def test_expense_creation():
     test_1 = Expense("test",100)

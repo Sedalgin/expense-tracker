@@ -3,7 +3,7 @@ from calculations import calculate_total_price
 from calculations import total_by_category
 from storage import load_expenses
 from storage import save_expenses
-from practice_oop import Expense
+from expense import Expense
 
 def flow_rate_output (general):
     for x in general:

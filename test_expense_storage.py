@@ -1,4 +1,4 @@
-from practice_oop import Expense
+from expense import Expense
 from storage import save_expenses
 from storage import load_expenses
 
