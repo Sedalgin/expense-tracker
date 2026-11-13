@@ -4,8 +4,11 @@ class Expense:
         self.amount = amount
 
 
-    def get_expense_1(self):
+    def __str__(self):
         return f"{self.category} = {self.amount} грн"
+
+    def __repr__(self):
+        return f"Expense('{self.category}', {self.amount})"
 
     def is_large(self,min_amount):
         return True if self.amount >= min_amount else False

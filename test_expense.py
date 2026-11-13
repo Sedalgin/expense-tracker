@@ -6,6 +6,11 @@ def test_expense_creation():
     assert test_1.amount == 100
     assert test_1.category == "test"
 
+def test_string_repr():
+    test_1 = Expense("test",100)
+    assert str(test_1) == "test = 100 грн"
+    assert repr(test_1) == "Expense('test', 100)"
+
 def test_change_amount():
     test_1 = Expense("test",100)
     test_1.change_amount(250)
