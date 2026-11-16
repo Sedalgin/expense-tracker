@@ -29,3 +29,8 @@ def test_sell_1(number):
     x = StockItem("test_1", 2)
     with pytest.raises(ValueError):
         x.sell(number)
+
+def test_object():
+    x = StockItem("test",1)
+    y = StockItem("test",1)
+    assert x == y

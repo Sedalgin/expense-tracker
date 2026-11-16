@@ -1,13 +1,16 @@
-class StockItem:
-    def __init__(self, name, quantity):
-        self.name = name
-        if quantity < 0:
-            raise ValueError("Остаток не может біть меньше ноля")
-        else:
-            self.quantity = quantity
+from dataclasses import dataclass
 
-    def text(self):
-        print(f"{self.name} -- Остаток {self.quantity}")
+@dataclass
+class StockItem:
+    name:str
+    quantity:int
+
+    def __post_init__(self):
+        if self.quantity < 0:
+            raise ValueError("Остаток не может біть меньше ноля")
+
+    def __str__(self):
+        return f"{self.name} -- Остаток {self.quantity}"
 
     def sell(self,amount):
         if amount <= 0:
@@ -19,6 +22,7 @@ class StockItem:
             return self.quantity
 
 if __name__ == "__main__":
-    x = StockItem("Stock Item", 5)
-    x.sell(4)
-    x.text()
+    x = StockItem("Stock Item",5)
+    h = x
+    h.quantity = 10
+    print(x.quantity)
