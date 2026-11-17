@@ -67,7 +67,6 @@ def main():
                 else:
                     general_list.append(cost_object.to_dict())
                     save_expenses(general_list)
-                    print(general_list)
 
         elif user_input == 2:
             flow_rate_output(general_list)

@@ -4,5 +4,4 @@ expenses.json
 __pycache__/
 CLAUDE.md
 .claude/
-test_expenses.json
 *.pdf
