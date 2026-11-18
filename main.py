@@ -5,13 +5,10 @@ from storage import load_expenses
 from storage import save_expenses
 from expense import Expense
 
-def flow_rate_output (general):
-    for spending in general:
-        print(f"{spending['Расходи']} - {spending['Сумма']}")
 
 def list_output(expense_list):
     for number,item in enumerate(expense_list):
-        print(f"{number+1} - {item['Расходи']} - {item['Сумма']} грн.")
+        print(f"{number+1} - {item['Категория']} - {item['Сумма']} грн.")
 
 def delete_expenses (expense_list):
     list_output(expense_list)
@@ -20,7 +17,7 @@ def delete_expenses (expense_list):
         if 1<=user_input <= len(expense_list):
             product_removed = expense_list[user_input-1]
             del expense_list[user_input - 1]
-            print(f"Категория - {product_removed['Расходи']} - УСПЕШНО УДАЛЕНА✅")
+            print(f"Категория - {product_removed['Категория']} - УСПЕШНО УДАЛЕНА✅")
             save_expenses(expense_list)
         else:
             print("Надо ввести число предлагаемое из списка")
@@ -69,7 +66,6 @@ def main():
                     save_expenses(general_list)
 
         elif user_input == 2:
-            flow_rate_output(general_list)
             print("Всего расходов по категориям")
             for category,summ in total_by_category(general_list).items():
                 print(f"{category} - {summ} грн")

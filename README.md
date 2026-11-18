@@ -4,7 +4,7 @@ A console program that keeps a list of your expenses.
 
 ## Features
 - Add new expenses
-- Show all saved expenses
+- Show totals by category
 - Show the total amount spent
 - Show how much was spent on a selected category
 - Delete expenses you no longer need
@@ -24,13 +24,21 @@ The program interface is in Russian.
 Добавить расход — 1
 Вывести расходы — 2
 Общая сумма — 3
-Виберите категорию растрат - 4
+Выберите категорию растрат - 4
+Удаление расхода - 5
+Выход — 6
+Сделайте свой выбор: 1
+Название расходов: Продукты
+Потраченная сумма: 1229
+Добавить расход — 1
+Вывести расходы — 2
+Общая сумма — 3
+Выберите категорию растрат - 4
 Удаление расхода - 5
 Выход — 6
 Сделайте свой выбор: 2
-Продукти  - 200
-Всего расходи по категоріям
-продукти - 200 грн
+Всего расходов по категориям
+продукты - 1229 грн
 ```
 
 ## How to run

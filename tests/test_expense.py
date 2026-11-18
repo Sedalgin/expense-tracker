@@ -45,7 +45,7 @@ def test_is_large(amount, expected):
 
 @pytest.mark.parametrize("expense, expected",
                          [
-                            (Expense("Такси",150),{"Расходи":"Такси","Сумма":150}),
+                            (Expense("Такси",150),{"Категория":"Такси","Сумма":150}),
                          ])
 
 def test_to_dict(expense, expected):

@@ -12,11 +12,11 @@ def total_by_category(expense_list):
     product_dictionary = {}
     if len(expense_list)>0:
         for spending in expense_list:
-            product = spending['Расходи']
+            product = spending['Категория']
             product_dictionary[normalize_category(product)] = 0
 
         for spending in expense_list:
-            items = normalize_category(spending['Расходи'])
+            items = normalize_category(spending['Категория'])
             summa_items = spending["Сумма"]
             if items in product_dictionary:
                 product_dictionary[items] += summa_items

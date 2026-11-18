@@ -13,7 +13,7 @@ def test_save_expenses(tmp_path):
     y = load_expenses(test_text)
     assert test_list == y
 
-    test_2 = Expense(y[0]["Расходи"],y[0]["Сумма"])
+    test_2 = Expense(y[0]["Категория"],y[0]["Сумма"])
 
     assert test_1.category == test_2.category
     assert test_1.amount == test_2.amount
@@ -29,6 +29,6 @@ def test_save_expenses(tmp_path):
     test_list_1.append(x)
     save_expenses(test_list_1,test_text_1)
     y_1 = load_expenses(test_text_1)
-    test_3 = Expense(y_1[0]["Расходи"],y_1[0]["Сумма"])
+    test_3 = Expense(y_1[0]["Категория"],y_1[0]["Сумма"])
     assert test_list_1 == y_1
     assert test_3.amount == 200

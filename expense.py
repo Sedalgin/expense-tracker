@@ -29,6 +29,6 @@ class Expense:
 
     def to_dict(self):
         slovar = {}
-        slovar["Расходи"] = self.category
+        slovar["Категория"] = self.category
         slovar["Сумма"] = self.amount
         return slovar
