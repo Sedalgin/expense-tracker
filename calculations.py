@@ -4,20 +4,20 @@ def normalize_category(text):
 
 def calculate_total_price(general):
     total_price = 0
-    for x in general:
-        total_price+=x["Сумма"]
+    for spending in general:
+        total_price+=spending["Сумма"]
     return total_price
 
 def total_by_category(expense_list):
     product_dictionary = {}
     if len(expense_list)>0:
-        for x in expense_list:
-            product = x['Расходи']
+        for spending in expense_list:
+            product = spending['Расходи']
             product_dictionary[normalize_category(product)] = 0
 
-        for y in expense_list:
-            items = normalize_category(y['Расходи'])
-            summa_items = y["Сумма"]
+        for spending in expense_list:
+            items = normalize_category(spending['Расходи'])
+            summa_items = spending["Сумма"]
             if items in product_dictionary:
                 product_dictionary[items] += summa_items
 
@@ -25,10 +25,9 @@ def total_by_category(expense_list):
     else:
         return {}
 
-
 def filter_by_min_amount(expense_list, min_amount):
     filter_list = []
-    for x in expense_list:
-        if x["Сумма"] >= min_amount:
-            filter_list.append(x)
+    for spending in expense_list:
+        if spending["Сумма"] >= min_amount:
+            filter_list.append(spending)
     return filter_list

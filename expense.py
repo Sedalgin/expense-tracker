@@ -20,7 +20,7 @@ class Expense:
     @amount.setter
     def amount(self,new_amount):
         if new_amount <= 0:
-            raise ValueError("Сумма должна біть больше нуля")
+            raise ValueError("Сумма должна быть больше нуля")
 
         self._amount = new_amount
 
