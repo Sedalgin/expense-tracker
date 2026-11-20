@@ -7,14 +7,15 @@ from expense import Expense
 
 
 def list_output(expense_list):
-    for number,item in enumerate(expense_list):
+    for number, item in enumerate(expense_list):
         print(f"{number+1} - {item['Категория']} - {item['Сумма']} грн.")
 
-def delete_expenses (expense_list):
+
+def delete_expenses(expense_list):
     list_output(expense_list)
     try:
         user_input = int(input("Введите число для удаления пункта растрат: "))
-        if 1<=user_input <= len(expense_list):
+        if 1 <= user_input <= len(expense_list):
             product_removed = expense_list[user_input-1]
             del expense_list[user_input - 1]
             print(f"Категория - {product_removed['Категория']} - УСПЕШНО УДАЛЕНА✅")
@@ -25,6 +26,7 @@ def delete_expenses (expense_list):
         print("Список ПУСТ")
     except ValueError:
         print("Нужно ввести ЧИСЛО")
+
 
 def main():
     flag = True
@@ -67,16 +69,17 @@ def main():
 
         elif user_input == 2:
             print("Всего расходов по категориям")
-            for category,summ in total_by_category(general_list).items():
+            for category, summ in total_by_category(general_list).items():
                 print(f"{category} - {summ} грн")
 
         elif user_input == 3:
             print(f"Общая сумма расходов составила {calculate_total_price(general_list)} грн. ")
 
         elif user_input == 4:
-            all_squandered =[]
+            all_squandered = []
             total_dict = total_by_category(general_list)
-            for number,category in enumerate(total_dict,start=1):
+
+            for number, category in enumerate(total_dict, start=1):
                 all_squandered.append(category)
                 print(f"{number} - {category}")
 
@@ -103,6 +106,7 @@ def main():
 
         else:
             print("Такого пункта НЕТУ !")
+
 
 if __name__ == "__main__":
     main()

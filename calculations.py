@@ -2,15 +2,17 @@ def normalize_category(text):
     text = text.strip().lower()
     return text
 
+
 def calculate_total_price(general):
     total_price = 0
     for spending in general:
-        total_price+=spending["Сумма"]
+        total_price += spending["Сумма"]
     return total_price
+
 
 def total_by_category(expense_list):
     product_dictionary = {}
-    if len(expense_list)>0:
+    if len(expense_list) > 0:
         for spending in expense_list:
             product = spending['Категория']
             product_dictionary[normalize_category(product)] = 0
@@ -24,6 +26,7 @@ def total_by_category(expense_list):
         return product_dictionary
     else:
         return {}
+
 
 def filter_by_min_amount(expense_list, min_amount):
     filter_list = []
