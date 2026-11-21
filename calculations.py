@@ -1,4 +1,4 @@
-LIST_OF_CATEGORIES_TO_CHOOSE_FROM = ["Продукти", "Жилье", "Транспорт", "Здоровье", "Шопинг"]
+LIST_OF_CATEGORIES_TO_CHOOSE_FROM = ["Продукты", "Жилье", "Транспорт", "Здоровье", "Шопинг"]
 
 
 def normalize_category(text):
