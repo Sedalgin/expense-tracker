@@ -1,6 +1,8 @@
 import json
 from calculations import calculate_total_price
 from calculations import total_by_category
+from calculations import category_by_number
+from calculations import LIST_OF_CATEGORIES_TO_CHOOSE_FROM
 from storage import load_expenses
 from storage import save_expenses
 from expense import Expense
@@ -52,20 +54,30 @@ def main():
             continue
 
         if user_input == 1:
-
-            category = input("Название расходов: ")
+            for number, category in enumerate(LIST_OF_CATEGORIES_TO_CHOOSE_FROM, start=1):
+                print(f"{number} - {category}")
             try:
-                summ = int(input("Потраченная сумма: "))
+                category_number = int(input("Выберите категорию растрат с списка: "))
             except ValueError:
                 print("Надо ввести число!")
             else:
                 try:
-                    cost_object = Expense(category, summ)
+                    category_from_list = category_by_number(category_number)
                 except ValueError as e:
                     print(e)
                 else:
-                    general_list.append(cost_object.to_dict())
-                    save_expenses(general_list)
+                    try:
+                        summ = int(input("Потраченная сумма: "))
+                    except ValueError:
+                        print("Надо ввести число!")
+                    else:
+                        try:
+                            cost_object = Expense(category_from_list, summ)
+                        except ValueError as e:
+                            print(e)
+                        else:
+                            general_list.append(cost_object.to_dict())
+                            save_expenses(general_list)
 
         elif user_input == 2:
             print("Всего расходов по категориям")
@@ -88,13 +100,15 @@ def main():
                 continue
             else:
                 try:
-                    user_category = int(input("Выберите категорию продукта чтоб увидеть потраченную сумму: "))
+                    user_category = int(input(
+                        "Выберите категорию продукта чтоб увидеть потраченную сумму: "))
                     if not 1 <= user_category <= len(all_squandered):
                         print("Ввели не верный номер!")
                         continue
                     else:
                         user_category = all_squandered[user_category - 1]
-                        print(f"Сумма потраченная на {user_category} = {total_dict[user_category]} грн.")
+                        print(f"Сумма потраченная на "
+                              f"{user_category} = {total_dict[user_category]} грн.")
                 except ValueError:
                     print("Надо ввести цифру для выбора!")
 
@@ -103,6 +117,7 @@ def main():
 
         elif user_input == 6:
             flag = False
+            print("Програма завершила работу")
 
         else:
             print("Такого пункта НЕТУ !")

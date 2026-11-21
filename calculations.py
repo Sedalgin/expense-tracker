@@ -1,6 +1,18 @@
+LIST_OF_CATEGORIES_TO_CHOOSE_FROM = ["Продукти", "Жилье", "Транспорт", "Здоровье", "Шопинг"]
+
+
 def normalize_category(text):
     text = text.strip().lower()
     return text
+
+
+def category_by_number(number):
+    if number > len(LIST_OF_CATEGORIES_TO_CHOOSE_FROM):
+        raise ValueError("Значение больше")
+    elif number <= 0:
+        raise ValueError("Значение меньше или равно 0")
+    else:
+        return LIST_OF_CATEGORIES_TO_CHOOSE_FROM[number-1]
 
 
 def calculate_total_price(general):
