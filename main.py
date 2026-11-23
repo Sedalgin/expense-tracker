@@ -60,24 +60,24 @@ def main():
                 category_number = int(input("Выберите категорию растрат с списка: "))
             except ValueError:
                 print("Надо ввести число!")
-            else:
-                try:
-                    category_from_list = category_by_number(category_number)
-                except ValueError as e:
-                    print(e)
-                else:
-                    try:
-                        summ = int(input("Потраченная сумма: "))
-                    except ValueError:
-                        print("Надо ввести число!")
-                    else:
-                        try:
-                            cost_object = Expense(category_from_list, summ)
-                        except ValueError as e:
-                            print(e)
-                        else:
-                            general_list.append(cost_object.to_dict())
-                            save_expenses(general_list)
+                continue
+            try:
+                category_from_list = category_by_number(category_number)
+            except ValueError as e:
+                print(e)
+                continue
+            try:
+                summ = int(input("Потраченная сумма: "))
+            except ValueError:
+                print("Надо ввести число!")
+                continue
+            try:
+                cost_object = Expense(category_from_list, summ)
+            except ValueError as e:
+                print(e)
+                continue
+            general_list.append(cost_object.to_dict())
+            save_expenses(general_list)
 
         elif user_input == 2:
             print("Всего расходов по категориям")
